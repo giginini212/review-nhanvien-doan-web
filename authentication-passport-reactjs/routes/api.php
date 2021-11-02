@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ForgetController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\UserController;
@@ -37,3 +38,7 @@ Route::post('/reset/password', [ResetController::class, 'ResetPassword']);
 // Current User Routes
 Route::get('/user', [UserController::class, 'User'])->middleware('auth:api'); // middleware check user login or not
 Route::post('/user/edit', [UserController::class, 'EditProfile'])->middleware('auth:api');
+
+
+// Employee Routes
+Route::post('employee/cv-update', [EmployeeController::class, 'Create'])->middleware('auth:api');

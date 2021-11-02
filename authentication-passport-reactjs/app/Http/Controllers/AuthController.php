@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -50,6 +51,11 @@ class AuthController extends Controller
             // login user after registering successfully
             $token = $user->createToken('app')->accessToken;
             
+            // create User CV Info
+            Employee::create([
+                'user_id' => $user->id,
+            ]);
+
             return response([
                 'message' => 'Registration Successfully',
                 'token' => $token,
