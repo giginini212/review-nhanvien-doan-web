@@ -41,4 +41,6 @@ Route::post('/user/edit', [UserController::class, 'EditProfile'])->middleware('a
 
 
 // Employee Routes
-Route::post('employee/cv-update', [EmployeeController::class, 'Create'])->middleware('auth:api');
+Route::post('employee/cv-update', [EmployeeController::class, 'UpdateCvInfo'])->middleware('auth:api');
+Route::get('employee/cv-show/{id}', [EmployeeController::class, 'ShowCvInfo']);
+
