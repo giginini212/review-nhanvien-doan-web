@@ -21,7 +21,7 @@ class CreateEmployeesTable extends Migration
             $table->string('phone')->nullable();
             $table->text('hobby')->nullable();
             $table->string('photo_path')->nullable();
-            $table->text('care_goals')->nullable();
+            $table->text('career_goals')->nullable();
             $table->string('education')->nullable();
             $table->text('experience')->nullable();
             $table->text('skill')->nullable();

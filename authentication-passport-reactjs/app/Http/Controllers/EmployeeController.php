@@ -48,17 +48,21 @@ class EmployeeController extends Controller
         ], 401);
     } // end UpdateCvInfo
 
-    public function ShowCvInfo($id)
+    public function ShowCvInfo($userId)
     {
         try {
-            $cvToShow = Employee::findOrFail($id)->get();
+            $cvToShow = Employee::where('user_id', $userId)->get();
             return response()->json($cvToShow);
         }
         catch(Exception $exception) {
             return response([
-                'message' => 'ID is not valid or not existed',
+                'message' => $exception->getMessage()
             ], 404);
         } 
+        
+        return response([
+            'message' => 'Cannot find user info with specified ID'
+        ], 404);
     }
 
     // delete old Image
