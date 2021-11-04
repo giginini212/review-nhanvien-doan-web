@@ -20,7 +20,7 @@ class EmployeeController extends Controller
             $this->deleteImage($cvToUpdateId);
             // generate image path
             $urlToSave = $this->createImagePath($request);
-
+            
             Employee::where('user_id', $cvToUpdateId)->update([
                 'sex' => $request->sex,
                 'date_of_birth' => $request->date_of_birth,
