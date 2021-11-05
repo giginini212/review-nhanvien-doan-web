@@ -15,7 +15,7 @@ class EmployeeController extends Controller
     public function UpdateCvInfo(EmployeeCreateRequest $request)
     {
         try {
-            $cvToUpdateId = Auth::user()->id;
+            $cvToUpdateId = $request->id;
             // delete old CV image before update
             $this->deleteImage($cvToUpdateId);
             // generate image path
@@ -48,7 +48,7 @@ class EmployeeController extends Controller
         ], 401);
     } // end UpdateCvInfo
 
-    public function ShowCvInfo($userId)
+    public function ShowCvInfo(Request $request, $userId)
     {
         try {
             $cvToShow = Employee::where('user_id', $userId)->get();

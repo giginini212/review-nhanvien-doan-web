@@ -36,11 +36,10 @@ Route::post('/forgetpassword', [ForgetController::class, 'ForgetPassword']);
 Route::post('/reset/password', [ResetController::class, 'ResetPassword']);
 
 // Current User Routes
-Route::get('/user', [UserController::class, 'User'])->middleware('auth:api'); // middleware check user login or not
-Route::post('/user/edit', [UserController::class, 'EditProfile'])->middleware('auth:api');
-
+Route::get('/user/{userId}', [UserController::class, 'User']); // middleware check user login or not
+Route::post('/user/edit/{userId}', [UserController::class, 'EditProfile']);
 
 // Employee Routes
-Route::post('employee/cv-update', [EmployeeController::class, 'UpdateCvInfo'])->middleware('auth:api');
+Route::post('employee/cv-update', [EmployeeController::class, 'UpdateCvInfo']);
 Route::get('employee/cv-show/{userId}', [EmployeeController::class, 'ShowCvInfo']);
 

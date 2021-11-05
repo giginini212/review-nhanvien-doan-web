@@ -11,16 +11,15 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function User()
+    public function User($userId)
     {
-        // return current user's data
-        return Auth::user();
+        $user = User::findOrFail($userId);
+        return response()->json($user);
     } // end User method
 
-    public function EditProfile(EditRequest $request)
+    public function EditProfile(EditRequest $request, $userId)
     {
-        $currentUserId = Auth::user()->id;
-        $currentUser = User::findOrFail($currentUserId);
+        $currentUser = User::findOrFail($userId);
 
         try {
             $currentUser->email = $request->email != NULL ? $request->email : Auth::user()->email;
@@ -30,7 +29,7 @@ class UserController extends Controller
             } 
 
             $currentUser->save();
-            return response()->json(User::findOrFail($currentUserId));
+            return response()->json(User::findOrFail($userId));
         } 
         catch(Exception $exception) {
             return response([
