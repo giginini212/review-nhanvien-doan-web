@@ -1,10 +1,10 @@
 import React, { Component, Profiler } from 'react'
-import Nav from './Nav'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import axios from 'axios';
 import Main from '../components/Main';
 import CVinfo from '../components/CVinfo'
 import Form from '../components/Form'
+import NavBar from '../components/NavBar';
+import Category from '../components/Category';
 
 
 
@@ -19,10 +19,12 @@ class Header extends Component {
     render() {
         return (
             <Router>
+                <NavBar />
                 <div>
                     <Switch>
                         <Route exact path="/" component={Main} />
                         <Route exact path="/cv-info" component={CVinfo} />
+                        <Route exact path="/category" component={Category} />
                         <Route exact path="/form" component={Form} />
                     </Switch>
                 </div>

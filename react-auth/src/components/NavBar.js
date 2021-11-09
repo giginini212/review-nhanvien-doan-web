@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../css/employ.css";
-import "../css/themify-icons-font/themify-icons/themify-icons.css";
+import "../css/themify-icons/themify-icons.css";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function NavBar(prop) {
   const userButton = {
@@ -21,15 +22,15 @@ function NavBar(prop) {
       <div id="nav">
         <ul>
           <li style={backStyle}>
-            <a href="/" style={{ color: "white" }}>
+            <Link to="/" style={{ color: "white" }}>
               LOGO
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/category">CATEGORIES</a>
+            <Link to="/category">CATEGORIES</Link>
           </li>
           <li>
-            <a href="/CVinfo">BLOG</a>
+            <Link to="/cv-info">BLOG</Link>
           </li>
           <li>
             <lable>
@@ -50,10 +51,10 @@ function NavBar(prop) {
         </ul>
       </div>
       <div className="user-account">
-        <a href="/CVinfo">
+        <Link to="/cv-info">
           <i className="ti-user" style={userButton}></i>
           <p>{prop.username}</p>
-        </a>
+        </Link>
       </div>
     </div>
   );
