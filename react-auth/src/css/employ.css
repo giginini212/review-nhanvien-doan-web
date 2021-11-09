@@ -56,13 +56,14 @@ div>ul>li {
     position: relative;
 }
 
-#nav li p {
+#nav li a {
     color: black;
     line-height: 46px;
     padding: 0 24px 0 24px;
+    text-decoration: none;
 }
 
-#nav li:hover>p {
+#nav li:hover>a {
     opacity: 0.6;
     cursor: pointer;
 }
@@ -101,6 +102,11 @@ div>ul>li {
     right: 10px;
     width: 230px;
     margin-top: 10px;
+}
+
+.user-account a {
+    text-decoration: none;
+    color: black
 }
 
 .user-account :hover {

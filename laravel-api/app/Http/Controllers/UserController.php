@@ -37,4 +37,9 @@ class UserController extends Controller
             ], 400);
         }
     } // end EditProfile method
+
+    public function GetAllUsers() {
+        $allUsers = User::select('id', 'name', 'email')->get();
+        return response()->json($allUsers);
+    }
 }

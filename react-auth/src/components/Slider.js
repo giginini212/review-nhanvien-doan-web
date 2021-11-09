@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../css/employ.css';
+import '../css/employ.css';
 
 function Picture (prop){
     return(

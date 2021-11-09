@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Header from './common/Header';
-import MC_Header from './common/MC/MC_Header';
 import axios from 'axios';
 
 // set main base API url
@@ -13,7 +12,7 @@ axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getIte
 
 ReactDOM.render(
   <React.StrictMode>
-    <MC_Header />
+    <Header />
     
   </React.StrictMode>,
   document.getElementById('root')
