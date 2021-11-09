@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EmployeeCreateRequest;
 use App\Models\Employee;
+use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -51,8 +52,13 @@ class EmployeeController extends Controller
     public function ShowCvInfo(Request $request, $userId)
     {
         try {
-            $cvToShow = Employee::where('user_id', $userId)->get();
-            return response()->json($cvToShow);
+            $userToShow = User::select('id', 'name', 'email')->findOrFail($userId);
+            $cvToShow = Employee::where('user_id', $userId)->first();
+            $dataToResponse = [
+                'userInfo' => $userToShow,
+                'cvInfo' => $cvToShow,
+            ];
+            return response()->json($dataToResponse);
         }
         catch(Exception $exception) {
             return response([

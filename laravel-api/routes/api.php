@@ -40,7 +40,7 @@ Route::get('/user/{userId}', [UserController::class, 'User']); // middleware che
 Route::post('/user/edit/{userId}', [UserController::class, 'EditProfile']);
 
 // Employee Routes
-Route::post('employee/cv-update', [EmployeeController::class, 'UpdateCvInfo']);
-Route::get('employee/cv-show/{userId}', [EmployeeController::class, 'ShowCvInfo']);
+Route::post('/employee/cv-update', [EmployeeController::class, 'UpdateCvInfo']);
+Route::get('/employee/cv-show/{userId}', [EmployeeController::class, 'ShowCvInfo']);
 
 // Route get all user
