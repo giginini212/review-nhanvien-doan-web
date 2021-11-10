@@ -15,7 +15,8 @@ class EmployeeFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(1)->create()->first(),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
             'sex' => $this->faker->randomElement(['Male', 'Female', 'Other']),
             'date_of_birth' => $this->faker->date(),
             'phone' => $this->faker->numerify('0#########'),
@@ -23,6 +24,7 @@ class EmployeeFactory extends Factory
             'photo_path' =>$this->faker->mimeType(),
             'career_goals' => $this->faker->randomElement(['CEO', 'CTO', 'CFO', 'UFO', 'FIFA', 'ASCII', 'BBQ']),
             'education' =>  $this->faker->randomElement(['Elementary School', 'University', 'Undergraduated', 'Sky Garden']),
+            'major' =>  $this->faker->randomElement(['IT', 'MBA', 'PHARMACY', 'EDUCATION', 'PR']),
             'experience' => $this->faker->paragraph(5),
             'skill' => $this->faker->paragraph(10),
             'certification' =>  $this->faker->randomElement(['IELTS: 10.0', 'TOIEC: 1000', 'JLPT: N0', 'IT Project Manager By Google']),
