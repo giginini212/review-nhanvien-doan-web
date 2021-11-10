@@ -13,21 +13,25 @@ use Intervention\Image\Facades\Image as Image;
 
 class EmployeeController extends Controller
 {
+    public function GetAllEmployees()
+    {
+        $employess = Employee::select('id', 'name', 'email', 'photo_path')->get();
+        return response()->json($employess);
+    }
+
     public function UpdateCvInfo(EmployeeCreateRequest $request)
     {
         try {
             $cvToUpdateId = $request->id;
-            // delete old CV image before update
-            $this->deleteImage($cvToUpdateId);
-            // generate image path
-            $urlToSave = $this->createImagePath($request);
             
             Employee::where('user_id', $cvToUpdateId)->update([
+                'name' => $request->name,
+                'email' => $request->email,
                 'sex' => $request->sex,
                 'date_of_birth' => $request->date_of_birth,
                 'phone' => $request->phone,
                 'hobby' => $request->hobby,
-                'photo_path' => $urlToSave,
+                'photo_path' => $request->avatar,
                 'career_goals' => $request->career_goals,
                 'education' => $request->education,
                 'experience' => $request->experience,
@@ -49,16 +53,11 @@ class EmployeeController extends Controller
         ], 401);
     } // end UpdateCvInfo
 
-    public function ShowCvInfo(Request $request, $userId)
+    public function ShowCvInfo(Request $request, $cvId)
     {
         try {
-            $userToShow = User::select('id', 'name', 'email')->findOrFail($userId);
-            $cvToShow = Employee::where('user_id', $userId)->first();
-            $dataToResponse = [
-                'userInfo' => $userToShow,
-                'cvInfo' => $cvToShow,
-            ];
-            return response()->json($dataToResponse);
+            $cvToShow = Employee::findOrFail($cvId);
+            return response()->json($cvToShow);
         }
         catch(Exception $exception) {
             return response([
@@ -72,24 +71,24 @@ class EmployeeController extends Controller
     }
 
     // delete old Image
-    public function deleteImage($cvId)
-    {
-        $photoToDelete = Employee::where('user_id', '=', $cvId)->firstOrFail()->photo_path;
-        if ($photoToDelete) {
-            @unlink(public_path($photoToDelete));
-        }
-    }
+    // public function deleteImage($cvId)
+    // {
+    //     $photoToDelete = Employee::where('user_id', '=', $cvId)->firstOrFail()->photo_path;
+    //     if ($photoToDelete) {
+    //         @unlink(public_path($photoToDelete));
+    //     }
+    // }
 
     // create image
-    public function createImagePath($request)
-    {
-        // image processing
-        $image = $request->file('avatar');
-        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        // store image to public folder
-        Image::make($image)->resize(300, 300)->save('upload/employee/'.$name_gen);
-        // save image path to database
-        $urlToSave = 'upload/employee/'.$name_gen;
-        return $urlToSave;
-    }
+    // public function createImagePath($request)
+    // {
+    //     // image processing
+    //     $image = $request->file('avatar');
+    //     $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+    //     // store image to public folder
+    //     Image::make($image)->resize(300, 300)->save('upload/employee/'.$name_gen);
+    //     // save image path to database
+    //     $urlToSave = 'upload/employee/'.$name_gen;
+    //     return $urlToSave;
+    // }
 }

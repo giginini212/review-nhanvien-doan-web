@@ -21,7 +21,7 @@ class EmployeeFactory extends Factory
             'date_of_birth' => $this->faker->date(),
             'phone' => $this->faker->numerify('0#########'),
             'hobby' =>  $this->faker->paragraph(3),
-            'photo_path' =>$this->faker->mimeType(),
+            'photo_path' => 'https://i.pinimg.com/564x/19/1d/92/191d9288881ae1f0de71547d503a0112.jpg',
             'career_goals' => $this->faker->randomElement(['CEO', 'CTO', 'CFO', 'UFO', 'FIFA', 'ASCII', 'BBQ']),
             'education' =>  $this->faker->randomElement(['Elementary School', 'University', 'Undergraduated', 'Sky Garden']),
             'major' =>  $this->faker->randomElement(['IT', 'MBA', 'PHARMACY', 'EDUCATION', 'PR']),

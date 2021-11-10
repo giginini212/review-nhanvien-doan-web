@@ -39,9 +39,9 @@ Route::post('/reset/password', [ResetController::class, 'ResetPassword']);
 Route::get('/user/{userId}', [UserController::class, 'User']); // middleware check user login or not
 Route::post('/user/edit/{userId}', [UserController::class, 'EditProfile']);
 // Route get all users
-Route::get('/user-info/all', [UserController::class, 'GetAllUsers']);
 
 // Employee Routes
 Route::post('/employee/cv-update', [EmployeeController::class, 'UpdateCvInfo']);
-Route::get('/employee/cv-show/{userId}', [EmployeeController::class, 'ShowCvInfo']);
+Route::get('/employee/cv-show/{cvId}', [EmployeeController::class, 'ShowCvInfo']);
+Route::get('/employee/all', [EmployeeController::class, 'GetAllEmployees']);
 
