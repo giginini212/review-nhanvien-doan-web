@@ -1,24 +1,27 @@
 import React, { Component, useState, useEffect } from "react";
 import Course from "./API";
-import getAllUser from "./API/userInfo";
 import "../css/employ.css";
 import axios from "axios";
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const Content = (props) => {
   const [items, setItems] = useState([]);
-  const [sendRequest, setSendRequest] = useState(true);
 
-  if (sendRequest) {
-    getAllUser().then((response) => {
-      const userData = response.data.map((data) => (
-        <CvItem name={data.name} address={data.email} />
-      ));
-      setItems((prevState) => {
-        return [...prevState, ...userData];
+  useEffect(() => {
+    axios.get("http://127.0.0.1:8000/api/employee/all").then((response) => {
+      const employeesData = response.data.map((employeeData) => {
+        return (
+          <CvItem
+            id={employeeData.id}
+            name={employeeData.name}
+            email={employeeData.email}
+            photo_path={employeeData.photo_path}
+            phone={employeeData.phone}
+          />
+        );
       });
+      setItems([...employeesData]);
     });
-    setSendRequest(false);
-  }
+  }, []);
 
   const range = 5;
   const NewItemList = [items.slice(0, range)];
@@ -52,14 +55,14 @@ const Content = (props) => {
 
   function CvItem(props) {
     return (
-      <div className="col col-third CV-item">
-        <img src={props.link} className="CV-img" />
+      <Link to={`/cv-info/${props.id}`} className="col col-third CV-item">
+        <img src={props.photo_path} alt={props.name} className="CV-img" />
         <p className="CV-name"> {props.name} </p>
         <div className="CV-discr">
-          <p className="address"> {props.address} </p>
-          <p className="salary"> {props.salary} </p>
+          <p className="address"> {props.email} </p>
+          <p className="salary"> {props.phone} </p>
         </div>
-      </div>
+      </Link>
     );
   }
 

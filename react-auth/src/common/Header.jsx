@@ -23,7 +23,7 @@ class Header extends Component {
                 <div>
                     <Switch>
                         <Route exact path="/" component={Main} />
-                        <Route exact path="/cv-info" component={CVinfo} />
+                        <Route exact path="/cv-info/:id" component={CVinfo} />
                         <Route exact path="/category" component={Category} />
                         <Route exact path="/form" component={Form} />
                     </Switch>
