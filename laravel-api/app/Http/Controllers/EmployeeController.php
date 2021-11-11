@@ -15,7 +15,7 @@ class EmployeeController extends Controller
 {
     public function GetAllEmployees()
     {
-        $employess = Employee::select('id', 'name', 'email', 'photo_path')->get();
+        $employess = Employee::select('id', 'name', 'email', 'photo_path', 'phone')->get();
         return response()->json($employess);
     }
 

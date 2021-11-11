@@ -47,7 +47,7 @@ const Content = (props) => {
     let listQuantity = Math.ceil(Course.length / 5);
     for (let i = 0; i < listQuantity; i++) {
       listArray.push(
-        <CvList functionName="Hello World" start={i} end={i + 1} />
+        <CvList functionName="Category" start={i} end={i + 1} />
       );
     }
     return listArray;

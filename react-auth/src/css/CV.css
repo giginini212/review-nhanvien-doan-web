@@ -90,6 +90,11 @@
     margin-bottom: 8em;
 }
 
+#right-info span {
+    width: 100%;
+    color: black;
+}
+
 .plus-button {
     font-size: 50px;
     background-color: #4C566A;
